@@ -43,8 +43,28 @@ class App extends Component {
   }
 
   handleSignIn(credentials) {
-    // Handle Sign Up
+    const { username, password } = credentials;
+    fetch("api/signin", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(credentials)
+    }).then((response) => {
+      if(response.status === 401){
+        this.setState({
+          signUpSignInError: "401 -- The Login attempt was invalid"
+        })
+
+      }
+    })
   }
+  // ### Implement handleSignIn in App.js
+  // * Need to do a fetch post to /signin 
+  // * Code will probably almost the same as handleSignUp
+  // * In the first fetch `then` there is a parameter for the `response`
+  // * this object has a property called status
+  // * If the value of status is 401 it means the login was invalid, setState for an error message
+  // * Else just return JSON as normal
+
 
   handleSignOut() {
     localStorage.removeItem("token");
@@ -57,7 +77,8 @@ class App extends Component {
     return (
       <SignUpSignIn 
         error={this.state.signUpSignInError} 
-        onSignUp={this.handleSignUp} 
+        onSignUp={this.handleSignUp}
+        onSignIn={this.handleSignIn} 
       />
     );
   }
@@ -75,6 +96,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props)
     let whatToShow = "";
     if (this.state.authenticated) {
       whatToShow = this.renderApp();

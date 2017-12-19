@@ -9,7 +9,7 @@ import authenticationRoutes from "./routes/AuthenticationRoutes";
 
 mongoose.set("debug", true);
 mongoose.Promise = global.Promise;
-///mongoose.connect("mongodb://localhost/authentication-practice");
+mongoose.connect("mongodb://localhost/authentication-practice");
 
 const app = express();
 
