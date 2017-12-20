@@ -31,7 +31,7 @@
 * Create 3 class components it doesn’t matter what they are 
 * componentDidMount should use fetch to make a GET request to a secured path that you create
 * In App.js renderApp, add routes for them these components
-
+<!-- something -->
 ### App
 * Fix App.js handleSignUp
     * It is common practice to make sure you know what password you are typing in by having the user type it in twice and ensure they typed the same thing each time
